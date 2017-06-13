@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4d6ab61daf514ed89de7a08219b6e775" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="BikerBoxDBModel.Anuncios" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BikerBoxDBModel.Direcciones" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BikerBoxDBModel.Motos" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BikerBoxDBModel.Reparaciones" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BikerBoxDBModel.Talleres" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BikerBoxDBModel.Usuarios" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BikerBoxDBModel.Valoraciones" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="BikerBoxDBModel.FKMotoAnuncios" ManuallyRouted="false" />
+        <AssociationConnector Association="BikerBoxDBModel.FKUsuarioAnuncios" ManuallyRouted="false" />
+        <AssociationConnector Association="BikerBoxDBModel.FKDireccionesTaller" ManuallyRouted="false" />
+        <AssociationConnector Association="BikerBoxDBModel.FKReparacionMoto" ManuallyRouted="false" />
+        <AssociationConnector Association="BikerBoxDBModel.FKReparacionTaller" ManuallyRouted="false" />
+        <AssociationConnector Association="BikerBoxDBModel.FKReparacionValoracion" ManuallyRouted="false" />
+        <AssociationConnector Association="BikerBoxDBModel.FKValoracionesTaller" ManuallyRouted="false" />
+        <AssociationConnector Association="BikerBoxDBModel.FKValoracionesUsuarios" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BikerBoxDBModel.BB_LoginTaller" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BikerBoxDBModel.BB_LoginUsuario" Width="1.5" PointX="7.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

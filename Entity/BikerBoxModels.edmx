@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BikerBoxDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BikerBoxDBModelStoreContainer">
+    <EntitySet Name="Anuncios" EntityType="BikerBoxDBModel.Store.Anuncios" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Direcciones" EntityType="BikerBoxDBModel.Store.Direcciones" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Motos" EntityType="BikerBoxDBModel.Store.Motos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Reparaciones" EntityType="BikerBoxDBModel.Store.Reparaciones" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Talleres" EntityType="BikerBoxDBModel.Store.Talleres" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Usuarios" EntityType="BikerBoxDBModel.Store.Usuarios" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Valoraciones" EntityType="BikerBoxDBModel.Store.Valoraciones" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BB_LoginTaller" EntityType="BikerBoxDBModel.Store.BB_LoginTaller" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BB_LoginUsuario" EntityType="BikerBoxDBModel.Store.BB_LoginUsuario" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FKMotoAnuncios" Association="BikerBoxDBModel.Store.FKMotoAnuncios">
+      <End Role="Motos" EntitySet="Motos" />
+      <End Role="Anuncios" EntitySet="Anuncios" />
+    </AssociationSet>
+    <AssociationSet Name="FKUsuarioAnuncios" Association="BikerBoxDBModel.Store.FKUsuarioAnuncios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Anuncios" EntitySet="Anuncios" />
+    </AssociationSet>
+    <AssociationSet Name="FKDireccionesTaller" Association="BikerBoxDBModel.Store.FKDireccionesTaller">
+      <End Role="Talleres" EntitySet="Talleres" />
+      <End Role="Direcciones" EntitySet="Direcciones" />
+    </AssociationSet>
+    <AssociationSet Name="FKReparacionMoto" Association="BikerBoxDBModel.Store.FKReparacionMoto">
+      <End Role="Motos" EntitySet="Motos" />
+      <End Role="Reparaciones" EntitySet="Reparaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FKReparacionTaller" Association="BikerBoxDBModel.Store.FKReparacionTaller">
+      <End Role="Talleres" EntitySet="Talleres" />
+      <End Role="Reparaciones" EntitySet="Reparaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FKReparacionValoracion" Association="BikerBoxDBModel.Store.FKReparacionValoracion">
+      <End Role="Valoraciones" EntitySet="Valoraciones" />
+      <End Role="Reparaciones" EntitySet="Reparaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FKValoracionesTaller" Association="BikerBoxDBModel.Store.FKValoracionesTaller">
+      <End Role="Talleres" EntitySet="Talleres" />
+      <End Role="Valoraciones" EntitySet="Valoraciones" />
+    </AssociationSet>
+    <AssociationSet Name="FKValoracionesUsuarios" Association="BikerBoxDBModel.Store.FKValoracionesUsuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Valoraciones" EntitySet="Valoraciones" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Anuncios">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="comunidadAutonoma" Type="varchar" Nullable="true" MaxLength="20" />
+    <Property Name="provincia" Type="varchar" Nullable="true" MaxLength="20" />
+    <Property Name="localidad" Type="varchar" Nullable="true" MaxLength="30" />
+    <Property Name="descripcion" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="idMoto" Type="int" Nullable="true" />
+    <Property Name="idUsuario" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Direcciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="calle" Type="varchar" Nullable="true" MaxLength="30" />
+    <Property Name="numero" Type="tinyint" Nullable="true" />
+    <Property Name="letra" Type="char" Nullable="true" MaxLength="1" />
+    <Property Name="idTaller" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Motos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="matricula" Type="char" Nullable="true" MaxLength="7" />
+    <Property Name="marca" Type="varchar" Nullable="true" MaxLength="15" />
+    <Property Name="modelo" Type="varchar" Nullable="true" MaxLength="20" />
+    <Property Name="estilo" Type="varchar" Nullable="true" MaxLength="10" />
+    <Property Name="cilindrada" Type="int" Nullable="true" />
+    <Property Name="año" Type="int" Nullable="true" />
+    <Property Name="km" Type="int" Nullable="true" />
+    <Property Name="color" Type="varchar" Nullable="true" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Reparaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idReparacion" Type="int" Nullable="true" />
+    <Property Name="diagnostico" Type="varchar" Nullable="true" MaxLength="30" />
+    <Property Name="explicacion" Type="nvarchar" Nullable="true" MaxLength="300" />
+    <Property Name="estado" Type="varchar" Nullable="true" MaxLength="20" />
+    <Property Name="prefio" Type="float" Nullable="true" />
+    <Property Name="idMoto" Type="int" Nullable="true" />
+    <Property Name="idTaller" Type="int" Nullable="true" />
+    <Property Name="idValoracion" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Talleres">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="correo" Type="varchar" Nullable="true" MaxLength="20" />
+    <Property Name="contrasena" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="nombre" Type="varchar" Nullable="true" MaxLength="30" />
+    <Property Name="nEmpleados" Type="tinyint" Nullable="true" />
+    <Property Name="descripcion" Type="nvarchar" Nullable="true" MaxLength="300" />
+    <Property Name="imagen" Type="varchar" Nullable="true" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="correo" Type="varchar" Nullable="true" MaxLength="20" />
+    <Property Name="contrasena" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="nombre" Type="varchar" Nullable="true" MaxLength="20" />
+    <Property Name="apellidos" Type="varchar" Nullable="true" MaxLength="30" />
+    <Property Name="dni" Type="char" Nullable="true" MaxLength="9" />
+    <Property Name="fnacimiento" Type="datetime" Nullable="true" />
+    <Property Name="localidad" Type="varchar" Nullable="true" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Valoraciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idTaller" Type="int" Nullable="true" />
+    <Property Name="idUsuario" Type="int" Nullable="true" />
+    <Property Name="comentario" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="nota" Type="tinyint" Nullable="true" />
+    <Property Name="fecha" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="BB_LoginTaller">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="correo" Type="varchar" Nullable="true" MaxLength="20" />
+    <Property Name="contrasena" Type="varchar" Nullable="true" MaxLength="32" />
+  </EntityType>
+  <EntityType Name="BB_LoginUsuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="correo" Type="varchar" Nullable="true" MaxLength="20" />
+    <Property Name="contrasena" Type="varchar" Nullable="true" MaxLength="32" />
+  </EntityType>
+  <Association Name="FKMotoAnuncios">
+    <End Role="Motos" Type="BikerBoxDBModel.Store.Motos" Multiplicity="0..1" />
+    <End Role="Anuncios" Type="BikerBoxDBModel.Store.Anuncios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Motos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Anuncios">
+        <PropertyRef Name="idMoto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKUsuarioAnuncios">
+    <End Role="Usuarios" Type="BikerBoxDBModel.Store.Usuarios" Multiplicity="0..1" />
+    <End Role="Anuncios" Type="BikerBoxDBModel.Store.Anuncios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Anuncios">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKDireccionesTaller">
+    <End Role="Talleres" Type="BikerBoxDBModel.Store.Talleres" Multiplicity="0..1" />
+    <End Role="Direcciones" Type="BikerBoxDBModel.Store.Direcciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Talleres">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Direcciones">
+        <PropertyRef Name="idTaller" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKReparacionMoto">
+    <End Role="Motos" Type="BikerBoxDBModel.Store.Motos" Multiplicity="0..1" />
+    <End Role="Reparaciones" Type="BikerBoxDBModel.Store.Reparaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Motos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Reparaciones">
+        <PropertyRef Name="idMoto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKReparacionTaller">
+    <End Role="Talleres" Type="BikerBoxDBModel.Store.Talleres" Multiplicity="0..1" />
+    <End Role="Reparaciones" Type="BikerBoxDBModel.Store.Reparaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Talleres">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Reparaciones">
+        <PropertyRef Name="idTaller" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKReparacionValoracion">
+    <End Role="Valoraciones" Type="BikerBoxDBModel.Store.Valoraciones" Multiplicity="0..1" />
+    <End Role="Reparaciones" Type="BikerBoxDBModel.Store.Reparaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Valoraciones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Reparaciones">
+        <PropertyRef Name="idValoracion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKValoracionesTaller">
+    <End Role="Talleres" Type="BikerBoxDBModel.Store.Talleres" Multiplicity="0..1" />
+    <End Role="Valoraciones" Type="BikerBoxDBModel.Store.Valoraciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Talleres">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Valoraciones">
+        <PropertyRef Name="idTaller" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKValoracionesUsuarios">
+    <End Role="Usuarios" Type="BikerBoxDBModel.Store.Usuarios" Multiplicity="0..1" />
+    <End Role="Valoraciones" Type="BikerBoxDBModel.Store.Valoraciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Valoraciones">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BikerBoxDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Anuncios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="comunidadAutonoma" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="provincia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="localidad" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="idMoto" Type="Int32" />
+          <Property Name="idUsuario" Type="Int32" />
+          <NavigationProperty Name="Motos" Relationship="Self.FKMotoAnuncios" FromRole="Anuncios" ToRole="Motos" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FKUsuarioAnuncios" FromRole="Anuncios" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Direcciones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="calle" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="numero" Type="Byte" />
+          <Property Name="letra" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="idTaller" Type="Int32" />
+          <NavigationProperty Name="Talleres" Relationship="Self.FKDireccionesTaller" FromRole="Direcciones" ToRole="Talleres" />
+        </EntityType>
+        <EntityType Name="Motos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="matricula" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="marca" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="modelo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="estilo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cilindrada" Type="Int32" />
+          <Property Name="año" Type="Int32" />
+          <Property Name="km" Type="Int32" />
+          <Property Name="color" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Anuncios" Relationship="Self.FKMotoAnuncios" FromRole="Motos" ToRole="Anuncios" />
+          <NavigationProperty Name="Reparaciones" Relationship="Self.FKReparacionMoto" FromRole="Motos" ToRole="Reparaciones" />
+        </EntityType>
+        <EntityType Name="Reparaciones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idReparacion" Type="Int32" />
+          <Property Name="diagnostico" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="explicacion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="prefio" Type="Double" />
+          <Property Name="idMoto" Type="Int32" />
+          <Property Name="idTaller" Type="Int32" />
+          <Property Name="idValoracion" Type="Int32" />
+          <NavigationProperty Name="Motos" Relationship="Self.FKReparacionMoto" FromRole="Reparaciones" ToRole="Motos" />
+          <NavigationProperty Name="Talleres" Relationship="Self.FKReparacionTaller" FromRole="Reparaciones" ToRole="Talleres" />
+          <NavigationProperty Name="Valoraciones" Relationship="Self.FKReparacionValoracion" FromRole="Reparaciones" ToRole="Valoraciones" />
+        </EntityType>
+        <EntityType Name="Talleres">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="correo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="contrasena" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="nEmpleados" Type="Byte" />
+          <NavigationProperty Name="Direcciones" Relationship="Self.FKDireccionesTaller" FromRole="Talleres" ToRole="Direcciones" />
+          <NavigationProperty Name="Reparaciones" Relationship="Self.FKReparacionTaller" FromRole="Talleres" ToRole="Reparaciones" />
+          <NavigationProperty Name="Valoraciones" Relationship="Self.FKValoracionesTaller" FromRole="Talleres" ToRole="Valoraciones" />
+          <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="imagen" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="correo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="contrasena" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="apellidos" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dni" Type="String" MaxLength="9" FixedLength="true" Unicode="false" />
+          <Property Name="fnacimiento" Type="DateTime" Precision="0" />
+          <Property Name="localidad" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Anuncios" Relationship="Self.FKUsuarioAnuncios" FromRole="Usuarios" ToRole="Anuncios" />
+          <NavigationProperty Name="Valoraciones" Relationship="Self.FKValoracionesUsuarios" FromRole="Usuarios" ToRole="Valoraciones" />
+        </EntityType>
+        <EntityType Name="Valoraciones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTaller" Type="Int32" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="comentario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nota" Type="Byte" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Reparaciones" Relationship="Self.FKReparacionValoracion" FromRole="Valoraciones" ToRole="Reparaciones" />
+          <NavigationProperty Name="Talleres" Relationship="Self.FKValoracionesTaller" FromRole="Valoraciones" ToRole="Talleres" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FKValoracionesUsuarios" FromRole="Valoraciones" ToRole="Usuarios" />
+        </EntityType>
+        <Association Name="FKMotoAnuncios">
+          <End Role="Motos" Type="Self.Motos" Multiplicity="0..1" />
+          <End Role="Anuncios" Type="Self.Anuncios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Motos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Anuncios">
+              <PropertyRef Name="idMoto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKUsuarioAnuncios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Anuncios" Type="Self.Anuncios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Anuncios">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDireccionesTaller">
+          <End Role="Talleres" Type="Self.Talleres" Multiplicity="0..1" />
+          <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Talleres">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Direcciones">
+              <PropertyRef Name="idTaller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReparacionMoto">
+          <End Role="Motos" Type="Self.Motos" Multiplicity="0..1" />
+          <End Role="Reparaciones" Type="Self.Reparaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Motos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Reparaciones">
+              <PropertyRef Name="idMoto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReparacionTaller">
+          <End Role="Talleres" Type="Self.Talleres" Multiplicity="0..1" />
+          <End Role="Reparaciones" Type="Self.Reparaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Talleres">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Reparaciones">
+              <PropertyRef Name="idTaller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReparacionValoracion">
+          <End Role="Valoraciones" Type="Self.Valoraciones" Multiplicity="0..1" />
+          <End Role="Reparaciones" Type="Self.Reparaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Valoraciones">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Reparaciones">
+              <PropertyRef Name="idValoracion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKValoracionesTaller">
+          <End Role="Talleres" Type="Self.Talleres" Multiplicity="0..1" />
+          <End Role="Valoraciones" Type="Self.Valoraciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Talleres">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Valoraciones">
+              <PropertyRef Name="idTaller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKValoracionesUsuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Valoraciones" Type="Self.Valoraciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Valoraciones">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BikerBoxDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Anuncios" EntityType="Self.Anuncios" />
+          <EntitySet Name="Direcciones" EntityType="Self.Direcciones" />
+          <EntitySet Name="Motos" EntityType="Self.Motos" />
+          <EntitySet Name="Reparaciones" EntityType="Self.Reparaciones" />
+          <EntitySet Name="Talleres" EntityType="Self.Talleres" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="Valoraciones" EntityType="Self.Valoraciones" />
+          <AssociationSet Name="FKMotoAnuncios" Association="Self.FKMotoAnuncios">
+            <End Role="Motos" EntitySet="Motos" />
+            <End Role="Anuncios" EntitySet="Anuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FKUsuarioAnuncios" Association="Self.FKUsuarioAnuncios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Anuncios" EntitySet="Anuncios" />
+          </AssociationSet>
+          <AssociationSet Name="FKDireccionesTaller" Association="Self.FKDireccionesTaller">
+            <End Role="Talleres" EntitySet="Talleres" />
+            <End Role="Direcciones" EntitySet="Direcciones" />
+          </AssociationSet>
+          <AssociationSet Name="FKReparacionMoto" Association="Self.FKReparacionMoto">
+            <End Role="Motos" EntitySet="Motos" />
+            <End Role="Reparaciones" EntitySet="Reparaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FKReparacionTaller" Association="Self.FKReparacionTaller">
+            <End Role="Talleres" EntitySet="Talleres" />
+            <End Role="Reparaciones" EntitySet="Reparaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FKReparacionValoracion" Association="Self.FKReparacionValoracion">
+            <End Role="Valoraciones" EntitySet="Valoraciones" />
+            <End Role="Reparaciones" EntitySet="Reparaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FKValoracionesTaller" Association="Self.FKValoracionesTaller">
+            <End Role="Talleres" EntitySet="Talleres" />
+            <End Role="Valoraciones" EntitySet="Valoraciones" />
+          </AssociationSet>
+          <AssociationSet Name="FKValoracionesUsuarios" Association="Self.FKValoracionesUsuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Valoraciones" EntitySet="Valoraciones" />
+          </AssociationSet>
+          <EntitySet Name="BB_LoginTaller" EntityType="BikerBoxDBModel.BB_LoginTaller" />
+          <EntitySet Name="BB_LoginUsuario" EntityType="BikerBoxDBModel.BB_LoginUsuario" />
+        </EntityContainer>
+        <EntityType Name="BB_LoginTaller">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="correo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="contrasena" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BB_LoginUsuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="correo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="contrasena" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BikerBoxDBModelStoreContainer" CdmEntityContainer="BikerBoxDBEntities">
+    <EntitySetMapping Name="Anuncios">
+      <EntityTypeMapping TypeName="IsTypeOf(BikerBoxDBModel.Anuncios)">
+        <MappingFragment StoreEntitySet="Anuncios">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="comunidadAutonoma" ColumnName="comunidadAutonoma" />
+          <ScalarProperty Name="provincia" ColumnName="provincia" />
+          <ScalarProperty Name="localidad" ColumnName="localidad" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idMoto" ColumnName="idMoto" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Direcciones">
+      <EntityTypeMapping TypeName="IsTypeOf(BikerBoxDBModel.Direcciones)">
+        <MappingFragment StoreEntitySet="Direcciones">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="letra" ColumnName="letra" />
+          <ScalarProperty Name="idTaller" ColumnName="idTaller" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Motos">
+      <EntityTypeMapping TypeName="IsTypeOf(BikerBoxDBModel.Motos)">
+        <MappingFragment StoreEntitySet="Motos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="matricula" ColumnName="matricula" />
+          <ScalarProperty Name="marca" ColumnName="marca" />
+          <ScalarProperty Name="modelo" ColumnName="modelo" />
+          <ScalarProperty Name="estilo" ColumnName="estilo" />
+          <ScalarProperty Name="cilindrada" ColumnName="cilindrada" />
+          <ScalarProperty Name="año" ColumnName="año" />
+          <ScalarProperty Name="km" ColumnName="km" />
+          <ScalarProperty Name="color" ColumnName="color" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reparaciones">
+      <EntityTypeMapping TypeName="IsTypeOf(BikerBoxDBModel.Reparaciones)">
+        <MappingFragment StoreEntitySet="Reparaciones">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idReparacion" ColumnName="idReparacion" />
+          <ScalarProperty Name="diagnostico" ColumnName="diagnostico" />
+          <ScalarProperty Name="explicacion" ColumnName="explicacion" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="prefio" ColumnName="prefio" />
+          <ScalarProperty Name="idMoto" ColumnName="idMoto" />
+          <ScalarProperty Name="idTaller" ColumnName="idTaller" />
+          <ScalarProperty Name="idValoracion" ColumnName="idValoracion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Talleres">
+      <EntityTypeMapping TypeName="IsTypeOf(BikerBoxDBModel.Talleres)">
+        <MappingFragment StoreEntitySet="Talleres">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="nEmpleados" ColumnName="nEmpleados" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="imagen" ColumnName="imagen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="IsTypeOf(BikerBoxDBModel.Usuarios)">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="dni" ColumnName="dni" />
+          <ScalarProperty Name="fnacimiento" ColumnName="fnacimiento" />
+          <ScalarProperty Name="localidad" ColumnName="localidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Valoraciones">
+      <EntityTypeMapping TypeName="IsTypeOf(BikerBoxDBModel.Valoraciones)">
+        <MappingFragment StoreEntitySet="Valoraciones">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idTaller" ColumnName="idTaller" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="comentario" ColumnName="comentario" />
+          <ScalarProperty Name="nota" ColumnName="nota" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BB_LoginTaller">
+      <EntityTypeMapping TypeName="IsTypeOf(BikerBoxDBModel.BB_LoginTaller)">
+        <MappingFragment StoreEntitySet="BB_LoginTaller">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BB_LoginUsuario">
+      <EntityTypeMapping TypeName="IsTypeOf(BikerBoxDBModel.BB_LoginUsuario)">
+        <MappingFragment StoreEntitySet="BB_LoginUsuario">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

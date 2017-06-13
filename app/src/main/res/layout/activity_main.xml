@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.javiermolina.bikerbox.Activities.MainActivity"
+    android:background="#ffffff">
+
+
+    <TabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TabWidget
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@android:id/tabs" />
+            
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@android:id/tabcontent">
+
+                <LinearLayout android:id="@+id/tab1"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:width="300dp"
+                        android:layout_gravity="center_horizontal"
+                        android:hint="@string/email"
+                        android:layout_marginTop="80dp"
+                        android:id="@+id/edtCorreoUsuario"/>
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:width="300dp"
+                        android:layout_gravity="center_horizontal"
+                        android:hint="@string/contrasena"
+                        android:inputType="textPassword"
+                        android:id="@+id/edtContrasenaUsuario"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:width="300dp"
+                        android:layout_gravity="center_horizontal"
+                        android:backgroundTint="#388186"
+                        android:text="@string/iniciarSesion"
+                        android:textColor="#ffffff"
+                        android:id="@+id/btnInicioUsuario"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:text="@string/recuperarContrasena"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:textColor="#388186"
+                        android:id="@+id/txtRecuperarUsuario"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:width="200dp"
+                        android:layout_gravity="center_horizontal"
+                        android:backgroundTint="#A5E9E1"
+                        android:text="@string/registro"
+                        android:layout_marginTop="70dp"
+                        android:id="@+id/btnRegistrarUsuario"/>
+
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/tab2"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:width="300dp"
+                        android:layout_gravity="center_horizontal"
+                        android:hint="@string/email"
+                        android:layout_marginTop="80dp"
+                        android:id="@+id/edtCorreoTaller"/>
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:width="300dp"
+                        android:layout_gravity="center_horizontal"
+                        android:hint="@string/contrasena"
+                        android:id="@+id/edtContrasenaTaller"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:width="300dp"
+                        android:layout_gravity="center_horizontal"
+                        android:backgroundTint="#388186"
+                        android:text="@string/iniciarSesion"
+                        android:textColor="#ffffff"
+                        android:id="@+id/btnInicioTaller"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:text="@string/recuperarContrasena"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:textColor="#388186"
+                        android:id="@+id/txtRecuperarTaller"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:width="200dp"
+                        android:layout_gravity="center_horizontal"
+                        android:backgroundTint="#A5E9E1"
+                        android:text="@string/registro"
+                        android:layout_marginTop="70dp"
+                        android:id="@+id/btnRegistrarTaller"/>
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+</LinearLayout>

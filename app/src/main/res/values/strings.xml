@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">BikerBox</string>
+    <string name="email">Email</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="iniciarSesion">Iniciar Sesion</string>
+    <string name="recuperarContrasena">¿Has olvidado la contraseña?</string>
+    <string name="registro">Registrarme</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="dni">DNI</string>
+    <string name="fnacimiento">Fecha de Nacimiento</string>
+    <string name="continuar">Continuar</string>
+    <string name="finalizar">Finalizar</string>
+    <string name="localidad">Localidad</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="descripcion">Descripcion</string>
+    <string name="guardar">Guardar</string>
+    <string name="marca">Marca</string>
+    <string name="modelo">Modelo</string>
+    <string name="Km">Kilometros</string>
+    <string name="color">Color</string>
+    <string name="cilindrada">Cilindrada</string>
+    <string name="matricula">Matricula</string>
+    <string name="ano">Año</string>
+    <string name="provincia">Provincia</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_menu_inicio_taller">MenuInicioTaller</string>
+    <string name="title_activity_aaaaaaaaaaaaa">aaaaaaaaaaaaa</string>
+
+</resources>

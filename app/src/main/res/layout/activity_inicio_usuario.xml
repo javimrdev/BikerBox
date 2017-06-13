@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.javiermolina.bikerbox.Activities.InicioUsuario"
+    android:background="#A5E9E1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btnUsuarioAnuncios"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/ic_monetization_on_black_48px"/>
+        <Button
+            android:id="@+id/btnUsuarioMotos"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/ic_account_box_black_48px"/>
+        <Button
+            android:id="@+id/btnUsuarioTalleres"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/ic_settings_black_48px"/>
+    </LinearLayout>
+
+</LinearLayout>

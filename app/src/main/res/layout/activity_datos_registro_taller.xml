@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.javiermolina.bikerbox.Activities.DatosRegistroTaller"
+    android:background="#ffffff">
+
+    <EditText
+        android:id="@+id/edtNombreRegistroTaller"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:width="300dp"
+        android:layout_gravity="center_horizontal"
+        android:hint="@string/nombre"
+        android:layout_marginTop="40dp"
+        android:maxLines="1"
+        android:inputType="text"
+        android:imeOptions="actionNext"/>
+
+    <EditText
+        android:id="@+id/edtCorreoRegistroTaller"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:width="300dp"
+        android:layout_gravity="center_horizontal"
+        android:hint="@string/email"
+        android:layout_marginTop="20dp"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:maxLines="1"/>
+    <EditText
+        android:id="@+id/edtContrasenaRegistroTaller"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:width="300dp"
+        android:layout_gravity="center_horizontal"
+        android:hint="@string/contrasena"
+        android:layout_marginTop="20dp"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:maxLines="1"/>
+
+    <EditText
+        android:id="@+id/edtDescripcionRegistroTaller"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:width="300dp"
+        android:layout_gravity="center_horizontal"
+        android:hint="@string/descripcion"
+        android:layout_marginTop="20dp"
+        android:imeOptions="actionDone"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/edtLocalidadRegistroTaller"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:width="300dp"
+        android:layout_gravity="center_horizontal"
+        android:hint="@string/localidad"
+        android:layout_marginTop="20dp"
+        android:imeOptions="actionDone"
+        android:inputType="text"/>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <ImageButton
+            android:id="@+id/btnSubirImagen"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:layout_centerHorizontal="true"
+            android:clickable="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="subir imagen"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="#388186"
+            android:textSize="20dp"/>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnContinuar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="250dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#388186"
+        android:text="@string/continuar"
+        android:textColor="#ffffff"
+        android:imeOptions="actionDone"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>

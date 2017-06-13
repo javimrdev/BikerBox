@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.javiermolina.bikerbox">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label=""
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Activities.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activities.DatosRegistroUsuario" />
+        <activity android:name=".Activities.DatosRegistroTaller" />
+        <activity android:name=".Activities.MenuInicioTaller" />
+        <activity android:name=".Activities.ChatTaller" />
+        <activity android:name=".Activities.PerfilTaller" />
+        <activity android:name=".Activities.InicioUsuario" />
+        <activity android:name=".Activities.UsuarioMotos" />
+        <activity android:name=".Activities.AnadirMoto" />
+        <activity android:name=".Activities.UsuarioAnuncios" />
+        <activity android:name=".Activities.UsuarioAnuncio" />
+        <activity android:name=".Activities.UsuarioModificarMoto"></activity>
+    </application>
+
+</manifest>

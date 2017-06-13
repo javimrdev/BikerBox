@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_talleres"
+        android:icon="@drawable/ic_business_white_48px"
+        android:title="Talleres"/>
+    <item
+        android:id="@+id/action_perfil"
+        android:enabled="true"
+        android:icon="@drawable/ic_account_circle_white_48px"
+        android:title="Perfil"/>
+    <item
+        android:id="@+id/action_venta"
+        android:icon="@drawable/ic_monetization_on_white_48px"
+        android:title="Venta"/>
+</menu>
