@@ -1,5 +1,7 @@
 package com.example.javiermolina.bikerbox.Models;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 
 /**
@@ -16,8 +18,11 @@ public class Moto implements Serializable{
     private int ano;
     private int km;
     private String color;
+    private Bitmap imagen;
 
-    public Moto() { }
+    public Moto(){}
+
+    public Moto(String s, String toString, String string, int i, int parseInt, int anInt, String s1) { }
 
     public Moto(int id, String marca, String modelo, String matricula, String estilo, int cilindrada, int ano, int km, String color) {
         this.id = id;
@@ -31,7 +36,33 @@ public class Moto implements Serializable{
         this.color = color;
     }
 
-    public Moto(String marca, String modelo, String matricula, int cilindrada, int ano, int km, String color) {
+
+    public Moto(int id, String marca, String modelo, String matricula, String estilo, int cilindrada, int ano, int km, String color, Bitmap imagen) {
+        this.id = id;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.matricula = matricula;
+        this.estilo = estilo;
+        this.cilindrada = cilindrada;
+        this.ano = ano;
+        this.km = km;
+        this.color = color;
+        this.imagen = imagen;
+    }
+
+    public Moto(String marca, String modelo, String matricula, String estilo, int cilindrada, int ano, int km, String color, Bitmap imagen) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.matricula = matricula;
+        this.estilo = estilo;
+        this.cilindrada = cilindrada;
+        this.ano = ano;
+        this.km = km;
+        this.color = color;
+        this.imagen = imagen;
+    }
+
+    public Moto(String marca, String modelo, String matricula, int cilindrada, int ano, int km, String color, Bitmap bitmap) {
         this.marca = marca;
         this.modelo = modelo;
         this.matricula = matricula;
@@ -111,6 +142,14 @@ public class Moto implements Serializable{
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public Bitmap getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Bitmap imagen) {
+        this.imagen = imagen;
     }
 
     @Override

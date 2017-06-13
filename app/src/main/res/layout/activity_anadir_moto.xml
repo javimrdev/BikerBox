@@ -95,14 +95,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageButton
-            android:id="@+id/btnSubirImagen"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:background="@null"
-            android:layout_centerHorizontal="true"
-            android:clickable="true"/>
         <TextView
+            android:id="@+id/btnSeleccionarImagen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="subir imagen"
@@ -110,7 +104,8 @@
             android:layout_centerVertical="true"
             android:textColor="#388186"
             android:textSize="20dp"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:clickable="true"/>
     </RelativeLayout>
 
     <Button

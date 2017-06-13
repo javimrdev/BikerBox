@@ -21,12 +21,12 @@ public class Taller implements Serializable{
         this.id = id;
     }
 
-    public Taller(String correo, String contrasena, String nombre, String descripcion, String foto) {
+    public Taller(String correo, String contrasena, String nombre, String descripcion, String localidad) {
         this.correo = correo;
         this.contrasena = contrasena;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.foto = foto;
+        this.localidad = localidad;
     }
 
     public Taller(int id, String correo, String contrasena, String nombre, String descripcion) {
@@ -101,5 +101,18 @@ public class Taller implements Serializable{
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    @Override
+    public String toString() {
+        return "Taller{" +
+                "id=" + id +
+                ", correo='" + correo + '\'' +
+                ", contrasena='" + contrasena + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", localidad='" + localidad + '\'' +
+                ", foto='" + foto + '\'' +
+                '}';
     }
 }

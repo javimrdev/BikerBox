@@ -2,6 +2,7 @@ package com.example.javiermolina.bikerbox.Activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,10 +15,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.view.View.OnClickListener;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 
@@ -44,7 +48,7 @@ import cz.msebera.android.httpclient.extras.Base64;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 import cz.msebera.android.httpclient.util.EntityUtils;
 
-public class DatosRegistroTaller extends AppCompatActivity {
+public class DatosRegistroTaller extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Bitmap imagenTaller;
     private Intent intent;
     private EditText edtNombre;
@@ -53,6 +57,8 @@ public class DatosRegistroTaller extends AppCompatActivity {
     private EditText edtDescripcion;
     private Button btnRegistrarTaller;
     private ImageButton elegirImagen;
+    private Spinner spLocalidades;
+    private Spinner spProvincias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +71,9 @@ public class DatosRegistroTaller extends AppCompatActivity {
         edtContrasena = (EditText) findViewById(R.id.edtContrasenaRegistroTaller);
         edtDescripcion = (EditText) findViewById(R.id.edtDescripcionRegistroTaller);
         btnRegistrarTaller = (Button) findViewById(R.id.btnContinuar);
-
+        spLocalidades = (Spinner)findViewById(R.id.spLocalidadesRegistroTaller);
+        spProvincias = (Spinner)findViewById(R.id.spProvinciasRegistroTaller);
+        loadSpinnerProvincias();
         btnRegistrarTaller.setOnClickListener(onClickListener);
         elegirImagen.setOnClickListener(btnSubirImagenControl);
 
@@ -78,9 +86,8 @@ public class DatosRegistroTaller extends AppCompatActivity {
                 case R.id.btnContinuar:
                     if(elegirImagen!=null) {
                         Drawable d = elegirImagen.getBackground();
-                        Bitmap b = ((BitmapDrawable)d).getBitmap();
                         Taller taller = new Taller(edtCorreo.getText().toString(), edtContrasena.getText().toString(), edtNombre.getText().toString(),
-                                edtDescripcion.getText().toString(),convertBitmapToString(b));
+                                edtDescripcion.getText().toString(),spLocalidades.getSelectedItem().toString());
                         registrarTaller(taller);
                     }else{
                         runOnUiThread(new Runnable() {
@@ -98,7 +105,7 @@ public class DatosRegistroTaller extends AppCompatActivity {
     private void registrarTaller(Taller taller) {
         final HttpClient httpClient = new DefaultHttpClient();
         Comunes comunes = new Comunes();
-        final HttpGet get = new HttpGet(comunes.getServerIp() + "login/registrarTallerConFoto/"+taller.getNombre()+"/"+taller.getCorreo()+"/"+taller.getContrasena()+"/"+
+        final HttpGet get = new HttpGet(comunes.getServerIp() + "login/registrartaller/"+taller.getNombre()+"/"+taller.getCorreo()+"/"+taller.getContrasena()+"/"+
                 taller.getDescripcion()+"/"+taller.getLocalidad());
 
         new Thread(new Runnable() {
@@ -111,6 +118,10 @@ public class DatosRegistroTaller extends AppCompatActivity {
                         JSONObject respJSON = new JSONObject(respStr);
                         int idTaller = respJSON.getInt("id");
                         Taller taller = new Taller(idTaller);
+                        taller.setDescripcion(respJSON.getString("descripcion"));
+                        taller.setLocalidad(respJSON.getString("localidad"));
+                        taller.setNombre(respJSON.getString("nombre"));
+                        taller.setCorreo(respJSON.getString("correo"));
                         intent = new Intent(DatosRegistroTaller.this, MenuInicioTaller.class);
                         intent.putExtra("taller", taller);
                         runOnUiThread(new Runnable() {
@@ -167,7 +178,51 @@ public class DatosRegistroTaller extends AppCompatActivity {
         }
     }
 
-    ;
+    private void loadSpinnerProvincias() {
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this, R.array.provincias, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.spProvincias.setAdapter(adapter);
+
+        this.spProvincias.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+        this.spLocalidades.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+
+    }
+
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch (parent.getId()) {
+            case R.id.spProvinciasRegistroTaller:
+
+                TypedArray arrayLocalidades = getResources().obtainTypedArray(
+                        R.array.array_provincia_a_localidades);
+                CharSequence[] localidades = arrayLocalidades.getTextArray(position);
+                arrayLocalidades.recycle();
+
+                // Create an ArrayAdapter using the string array and a default
+                // spinner layout
+                ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(
+                        this, android.R.layout.simple_spinner_item,
+                        android.R.id.text1, localidades);
+
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                // Apply the adapter to the spinner
+                this.spLocalidades.setAdapter(adapter);
+
+                break;
+
+            case R.id.spLocalidadesRegistroTaller:
+
+                break;
+        }
+    }
+
+
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 
     public String convertBitmapToString(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

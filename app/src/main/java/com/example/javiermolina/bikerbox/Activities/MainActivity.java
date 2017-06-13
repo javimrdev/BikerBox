@@ -182,10 +182,7 @@ public class MainActivity extends AppCompatActivity {
         final HttpClient httpClient = new DefaultHttpClient();
         comunes = new Comunes();
         final HttpGet get = new HttpGet(comunes.getServerIp()+"login/iniciarTaller/"+correo+"/"+contrasena);
-
         get.setHeader("content-type", "application/json");
-
-
         new Thread(new Runnable() {
             public void run() {
                 try {
@@ -196,7 +193,9 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject respJSON = new JSONObject(respStr);
                         int idCli = respJSON.getInt("id");
                         final Taller taller = new Taller(idCli);
-                        if(taller!=null){
+                        taller.setNombre(respJSON.getString("nombre"));
+                        taller.setLocalidad(respJSON.getString("Localidad"));
+                        taller.setDescripcion(respJSON.getString("descripcion"));
 
                             runOnUiThread(new Runnable() {
                                 public void run() {
@@ -205,7 +204,6 @@ public class MainActivity extends AppCompatActivity {
                                     startActivity(intent);
                                 }
                             });
-                        }
                     }else{
                         runOnUiThread(new Runnable() {
                             public void run() {

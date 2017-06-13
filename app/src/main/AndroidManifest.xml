@@ -30,7 +30,8 @@
         <activity android:name=".Activities.AnadirMoto" />
         <activity android:name=".Activities.UsuarioAnuncios" />
         <activity android:name=".Activities.UsuarioAnuncio" />
-        <activity android:name=".Activities.UsuarioModificarMoto"></activity>
+        <activity android:name=".Activities.UsuarioModificarMoto" />
+        <activity android:name=".Activities.UsuariosTalleres"></activity>
     </application>
 
 </manifest>
