@@ -24,6 +24,7 @@ import com.example.javiermolina.bikerbox.Adapters.AdaptadorMotosPerfil;
 import com.example.javiermolina.bikerbox.Helper.Comunes;
 import com.example.javiermolina.bikerbox.Models.Anuncio;
 import com.example.javiermolina.bikerbox.Models.Moto;
+import com.example.javiermolina.bikerbox.Models.Usuario;
 import com.example.javiermolina.bikerbox.R;
 
 import org.json.JSONArray;
@@ -44,16 +45,18 @@ public class UsuarioAnuncios extends AppCompatActivity implements AdapterView.On
     private Anuncio[] listaAnuncios;
     private Spinner spnProvincias;
     private Spinner spnLocalidades;
+    private Usuario user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario_anuncios);
-        //getActionBar().setCustomView(R.layout.actionbar_anuncios_usuario);
         fab = (FloatingActionButton)findViewById(R.id.btnBuscarAnuncio);
         lstAnuncios = (ListView) findViewById(R.id.lstAnuncios);
         spnProvincias = (Spinner)findViewById(R.id.spnProvincias);
         spnLocalidades = (Spinner)findViewById(R.id.spnLocalidades);
+        Intent intent = getIntent();
+        user = (Usuario) intent.getSerializableExtra("usuario");
         loadSpinnerProvincias();
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +73,7 @@ public class UsuarioAnuncios extends AppCompatActivity implements AdapterView.On
                 runOnUiThread(new Runnable() {
                     public void run() {
                         Intent intent = new Intent(UsuarioAnuncios.this,UsuarioAnuncio.class);
+                        intent.putExtra("usuario",user);
                         intent.putExtra("anuncio",a);
                         startActivity(intent);
                     }

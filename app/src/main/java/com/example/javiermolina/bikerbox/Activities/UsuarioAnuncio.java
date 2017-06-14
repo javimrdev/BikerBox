@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.javiermolina.bikerbox.Models.Anuncio;
+import com.example.javiermolina.bikerbox.Models.Usuario;
 import com.example.javiermolina.bikerbox.R;
 
 public class UsuarioAnuncio extends AppCompatActivity {
@@ -16,7 +17,7 @@ public class UsuarioAnuncio extends AppCompatActivity {
     private TextView txtColor;
     private TextView txtCilindrada;
     private TextView txtLocalidad;
-    private TextView txtDescripcion;
+    private TextView txtCorreo;
     private TextView txtAno;
     private TextView txtPrecio;
 
@@ -29,21 +30,22 @@ public class UsuarioAnuncio extends AppCompatActivity {
         txtAno = (TextView)findViewById(R.id.txtAnoAnuncioFinal);
         txtCilindrada = (TextView)findViewById(R.id.txtCilindradaAnuncioFinal);
         txtColor = (TextView)findViewById(R.id.txtColorAnuncioFinal);
-        txtDescripcion = (TextView)findViewById(R.id.txtDescripcionAnuncioFinal);
+        txtCorreo = (TextView)findViewById(R.id.txtCorreoAnuncioFinal);
         txtKm = (TextView)findViewById(R.id.txtKmAnuncioFinal);
         txtLocalidad = (TextView)findViewById(R.id.txtLocalidadAnuncioFinal);
         txtPrecio = (TextView)findViewById(R.id.txtPrecioAnuncioFinal);
         Intent intent = getIntent();
         Anuncio a = (Anuncio)intent.getSerializableExtra("anuncio");
+        Usuario u = (Usuario)intent.getSerializableExtra("usuario");
 
         txtMarca.setText(a.getMarca());
         txtModelo.setText(a.getModelo());
         txtAno.setText("Año: "+a.getAno());
         txtCilindrada.setText("Cilindrada: "+a.getCilindrada()+"cc");
         txtColor.setText("Color: "+a.getColor());
-        txtDescripcion.setText("Descripcion: "+a.getDescripcion());
         txtKm.setText(a.getKm()+" Kms");
         txtLocalidad.setText("Localidad: "+a.getLocalidad());
         txtPrecio.setText("Precio: "+a.getPrecio()+"€");
+        txtCorreo.setText("Correo: "+u.getCorreo());
     }
 }
