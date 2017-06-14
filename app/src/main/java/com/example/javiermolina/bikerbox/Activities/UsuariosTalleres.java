@@ -34,7 +34,7 @@ import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 import cz.msebera.android.httpclient.util.EntityUtils;
 
 public class UsuariosTalleres extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
-    private ListView lstAnuncios;
+    private ListView lstTalleres;
     private Taller listaTalleres[];
     private Spinner spProvinciasTalleresUsuario;
     private Spinner spLocalidadesTalleresUsuario;
@@ -44,7 +44,7 @@ public class UsuariosTalleres extends AppCompatActivity implements AdapterView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuarios_talleres);
-        lstAnuncios = (ListView)findViewById(R.id.lstTalleresUsuario);
+        lstTalleres = (ListView)findViewById(R.id.lstTalleresUsuario);
         spProvinciasTalleresUsuario = (Spinner)findViewById(R.id.spProvinciasUsuarioTalleres);
         spLocalidadesTalleresUsuario = (Spinner)findViewById(R.id.spLocalidadesUsuarioTaller);
         fab = (FloatingActionButton)findViewById(R.id.btnBuscarTalleresUsuario);
@@ -57,6 +57,20 @@ public class UsuariosTalleres extends AppCompatActivity implements AdapterView.O
             @Override
             public void onClick(View v) {
                 obtenerTalleres(spLocalidadesTalleresUsuario.getSelectedItem().toString());
+            }
+        });
+
+        lstTalleres.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final Taller t = listaTalleres[position];
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        Intent intent = new Intent(UsuariosTalleres.this,UsuarioPerfilTaller.class);
+                        intent.putExtra("taller",t);
+                        startActivity(intent);
+                    }
+                });
             }
         });
     }
@@ -89,7 +103,7 @@ public class UsuariosTalleres extends AppCompatActivity implements AdapterView.O
                             public void run() {
                                 //cargar listview de anuncios
                                 AdaptadorTalleresUsuario adaptador = new AdaptadorTalleresUsuario(getApplicationContext(), listaTalleres);
-                                lstAnuncios.setAdapter(adaptador);
+                                lstTalleres.setAdapter(adaptador);
                             }
                         });
                     }else{

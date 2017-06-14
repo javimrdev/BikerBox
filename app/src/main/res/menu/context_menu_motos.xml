@@ -5,4 +5,6 @@
         android:title="Eliminar"></item>
     <item android:id="@+id/CtxLblOpc2"
         android:title="Modificar"></item>
+    <item android:id="@+id/CtxLblOpc3"
+        android:title="Anunciar"></item>
 </menu>

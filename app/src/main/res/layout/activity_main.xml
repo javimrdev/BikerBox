@@ -97,6 +97,7 @@
                         android:layout_height="wrap_content"
                         android:width="300dp"
                         android:layout_gravity="center_horizontal"
+                        android:inputType="textPassword"
                         android:hint="@string/contrasena"
                         android:id="@+id/edtContrasenaTaller"/>
                     <Button

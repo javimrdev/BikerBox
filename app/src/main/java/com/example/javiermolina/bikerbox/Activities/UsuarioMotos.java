@@ -84,6 +84,11 @@ public class UsuarioMotos extends AppCompatActivity {
                 Moto mo = listaMotos[y];
                 modificarMoto(mo);
                 break;
+            case R.id.CtxLblOpc3:
+                int z = info.position;
+                Moto mot = listaMotos[z];
+                anunciarMoto(mot);
+                break;
         }
         return true;
     }
@@ -103,6 +108,16 @@ public class UsuarioMotos extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+    private void anunciarMoto(final Moto m){
+        runOnUiThread(new Runnable() {
+            public void run() {
+                Intent intent = new Intent(UsuarioMotos.this,AnunciarMoto.class);
+                intent.putExtra("moto",m);
+                startActivity(intent);
+            }
+        });
     }
 
     private void obtenerMotos(int id){

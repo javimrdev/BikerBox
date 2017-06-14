@@ -31,7 +31,9 @@
         <activity android:name=".Activities.UsuarioAnuncios" />
         <activity android:name=".Activities.UsuarioAnuncio" />
         <activity android:name=".Activities.UsuarioModificarMoto" />
-        <activity android:name=".Activities.UsuariosTalleres"></activity>
+        <activity android:name=".Activities.UsuariosTalleres" />
+        <activity android:name=".Activities.AnunciarMoto" />
+        <activity android:name=".Activities.UsuarioPerfilTaller"></activity>
     </application>
 
 </manifest>
