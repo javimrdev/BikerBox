@@ -59,6 +59,15 @@ public class InicioUsuario extends AppCompatActivity {
                         }
                     });
                     break;
+                case R.id.btnUsuarioTalleres:
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Intent intent = new Intent(InicioUsuario.this, UsuariosTalleres.class);
+                            intent.putExtra("usuario",usuario);
+                            startActivity(intent);
+                        }
+                    });
+                    break;
             }
         }
     };

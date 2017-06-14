@@ -105,8 +105,10 @@ public class DatosRegistroTaller extends AppCompatActivity implements AdapterVie
     private void registrarTaller(Taller taller) {
         final HttpClient httpClient = new DefaultHttpClient();
         Comunes comunes = new Comunes();
-        final HttpGet get = new HttpGet(comunes.getServerIp() + "login/registrartaller/"+taller.getNombre()+"/"+taller.getCorreo()+"/"+taller.getContrasena()+"/"+
-                taller.getDescripcion()+"/"+taller.getLocalidad());
+        final HttpGet get = new HttpGet((comunes.getServerIp() + "login/registrartaller/"+taller.getNombre()+"/"+taller.getCorreo()+"/"+taller.getContrasena()+"/"+
+                taller.getDescripcion()+"/"+taller.getLocalidad()).replaceAll(" ","%20"));
+        Log.e("asdasd",(comunes.getServerIp() + "login/registrartaller/"+taller.getNombre()+"/"+taller.getCorreo()+"/"+taller.getContrasena()+"/"+
+                taller.getDescripcion()+"/"+taller.getLocalidad()).replaceAll(" ","%20"));
 
         new Thread(new Runnable() {
             public void run() {
@@ -119,7 +121,7 @@ public class DatosRegistroTaller extends AppCompatActivity implements AdapterVie
                         int idTaller = respJSON.getInt("id");
                         Taller taller = new Taller(idTaller);
                         taller.setDescripcion(respJSON.getString("descripcion"));
-                        taller.setLocalidad(respJSON.getString("localidad"));
+                        taller.setLocalidad(respJSON.getString("Localidad"));
                         taller.setNombre(respJSON.getString("nombre"));
                         taller.setCorreo(respJSON.getString("correo"));
                         intent = new Intent(DatosRegistroTaller.this, MenuInicioTaller.class);

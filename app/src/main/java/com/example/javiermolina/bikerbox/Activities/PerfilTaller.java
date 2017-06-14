@@ -64,8 +64,8 @@ public class PerfilTaller extends AppCompatActivity{
     private void modificarTaller(int id, String nombre, String descripcion) {
         final HttpClient httpClient = new DefaultHttpClient();
         Comunes comunes = new Comunes();
-        final HttpGet get = new HttpGet(comunes.getServerIp() + "taller/modificarTaller/"+
-            id+"/"+nombre+"/"+descripcion);
+        final HttpGet get = new HttpGet((comunes.getServerIp() + "taller/modificarTaller/"+
+            id+"/"+nombre+"/"+descripcion).replaceAll(" ","%20"));
         get.setHeader("content-type", "application/json");
         new Thread(new Runnable() {
             public void run() {
