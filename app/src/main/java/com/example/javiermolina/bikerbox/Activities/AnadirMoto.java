@@ -82,7 +82,8 @@ public class AnadirMoto extends AppCompatActivity {
         btnContinuar = (Button) findViewById(R.id.btnAnadirContinuarMoto);
         txtSeleccionarImagen = (TextView) findViewById(R.id.btnSeleccionarImagen);
 
-        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, estilos);
+        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,
+                estilos);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spEstilo.setAdapter(adapter);
 
@@ -114,7 +115,8 @@ public class AnadirMoto extends AppCompatActivity {
         final HttpClient httpClient = new DefaultHttpClient();
         Comunes comunes = new Comunes();
         final HttpGet get = new HttpGet(comunes.getServerIp() + "motos/anadirmotousuario/" + user.getId() + "/" +
-                edtMarca.getText().toString() + "/" + edtModelo.getText().toString() + "/" + edtMatricula.getText().toString() + "/" +
+                edtMarca.getText().toString() + "/" + edtModelo.getText().toString() + "/" + edtMatricula.getText().toString(
+        ) + "/" +
                 edtColor.getText().toString() + "/" + edtKilometros.getText().toString() + "/" + edtCilindrada.getText().toString() + "/" +
                 edtAno.getText().toString() + "/" + spEstilo.getSelectedItem().toString());
         get.setHeader("content-type", "application/json");
@@ -134,7 +136,8 @@ public class AnadirMoto extends AppCompatActivity {
                     } else {
                         runOnUiThread(new Runnable() {
                             public void run() {
-                                Toast toast = Toast.makeText(getApplicationContext(), "Se ha producido un error", Toast.LENGTH_LONG);
+                                Toast toast = Toast.makeText(getApplicationContext(), "Se ha producido un error",
+                                        Toast.LENGTH_LONG);
                                 toast.show();
                             }
                         });
@@ -177,7 +180,6 @@ public class AnadirMoto extends AppCompatActivity {
                     js.put("estilo", m.getEstilo());
                     js.put("foto", BitMapToByteArray(auxFoto));
                     StringEntity entity = new StringEntity(js.toString());
-                    Log.e("asda", entity.toString());
                     post.setEntity(entity);
                     HttpResponse resp = httpClient.execute(post);
                     String respStr = EntityUtils.toString(resp.getEntity());
@@ -228,7 +230,6 @@ public class AnadirMoto extends AppCompatActivity {
                     selectedImage = imageReturnedIntent.getData();
                     String selectedPath = selectedImage.getPath();
                     if (requestCode == SELECT_FILE) {
-
                         if (selectedPath != null) {
                             InputStream imageStream = null;
                             try {
@@ -236,14 +237,9 @@ public class AnadirMoto extends AppCompatActivity {
                             } catch (FileNotFoundException e) {
                                 e.printStackTrace();
                             }
-
-                            // Transformamos la URI de la imagen a inputStream y este a un Bitmap
                             Bitmap bmp = BitmapFactory.decodeStream(imageStream);
-
-                            // Ponemos nuestro bitmap en un ImageView que tengamos en la vista
                             auxFoto = Bitmap.createScaledBitmap(bmp, 120, 120, false);
                             ;
-
                         }
                     }
                 }

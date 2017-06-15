@@ -5,7 +5,7 @@ package com.example.javiermolina.bikerbox.Helper;
  */
 
 public class Comunes {
-    static final String serverIp = "http://192.168.0.104/";
+    static final String serverIp = "http://192.168.1.177/";
 
     public Comunes(){}
 
